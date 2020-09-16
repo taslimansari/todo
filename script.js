@@ -2,20 +2,14 @@ var input = document.getElementById('userinput');
 var button = document.getElementById('enter');
 var ul = document.querySelector('ul');
 var deleteBtns = document.getElementsByClassName("delete");
-var items = ul.getElementsByTagName("li");
 
-// delete waala
-for(var i = 0; i < deleteBtns.length; i++){
-	deleteBtns[i].addEventListener("click", removeParent, false);
-}
-
-//from StackOverflow:
+//For Removing the item from todo
 function removeParent(evt) {
     evt.target.removeEventListener("click", removeParent, false);
     evt.target.parentNode.remove();
   }
   
-  //click on a list item and it strikethroughs the text
+ //Cancelling the todo onclick
   function getEventTarget(e){
       e = e || window.event;
       return e.target || e.srcElement;
@@ -27,11 +21,12 @@ function removeParent(evt) {
       target.classList.toggle("done");
   }
   
-
+//Game starts here
 function inputLength(){
     return input.value.length;
 }
 
+//creating a list element
 function createListElement(){
     var btn = document.createElement("button");
     btn.innerHTML = "Delete";
@@ -47,6 +42,7 @@ function createListElement(){
 	input.value="";
 }
 
+//adding items to the end
 function addListAfterClick(){
     if(inputLength()>0){
         createListElement();
@@ -59,6 +55,7 @@ function addListAfterKeypress(event){
     }
 }
 
+//Boom!!
 button.addEventListener('click', addListAfterClick);
 input.addEventListener('keypress', addListAfterKeypress);
 
