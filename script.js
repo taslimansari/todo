@@ -1,61 +1,60 @@
+//select the elements first
 var input = document.getElementById('userinput');
 var button = document.getElementById('enter');
 var ul = document.querySelector('ul');
-var deleteBtns = document.getElementsByClassName("delete");
 
-//For Removing the item from todo
-function removeParent(evt) {
-    evt.target.removeEventListener("click", removeParent, false);
+//write in functions then
+
+//for Deleting buttons
+function removeTodo(evt){
+    evt.target.removeEventListener('click', removeTodo, false);
     evt.target.parentNode.remove();
-  }
-  
- //Cancelling the todo onclick
-  function getEventTarget(e){
-      e = e || window.event;
-      return e.target || e.srcElement;
-  }
-  
-  
-  ul.onclick = function(event){
-      var target = getEventTarget(event);
-      target.classList.toggle("done");
-  }
-  
-//Game starts here
+}
+
+//for stroke or cancellation
+function cancelTodo(e){
+    e=e||e.window.event;
+    return e.target || e.srcElement;
+}
+
+ul.onclick = function(event){
+    var target = cancelTodo(event);
+    target.classList.toggle('done');
+}
+
+//for creating a todo
 function inputLength(){
     return input.value.length;
 }
 
-//Creating a list element
+//creating a new list element
 function createListElement(){
-    var btn = document.createElement("button");
-    btn.innerHTML = "Delete";
+    //for adding button
+    var btn = document.createElement('button');
+    btn.innerHTML = 'Delete!!';
     btn.classList.add('delete');
-	btn.onclick = removeParent;
-
-	var li = document.createElement("li");
-	li.appendChild(document.createTextNode(input.value));
-	li.innerHTML = li.innerHTML + " ";
-	li.appendChild(btn);
-
-	ul.appendChild(li);
-	input.value="";
+    btn.onclick = removeTodo;
+    //for list
+    var li = document.createElement('li');
+    li.appendChild(document.createTextNode(input.value));
+    li.appendChild(btn);
+    ul.appendChild(li);
+    input.value = '';
 }
 
-//Adding items to the end
-function addListAfterClick(){
+//combine altogether
+function addAfterClick(){
     if(inputLength()>0){
         createListElement();
     }
 }
 
-function addListAfterKeypress(event){
+function addAfterKeyPress(event){
     if(inputLength()>0 && event.keyCode === 13){
         createListElement();
     }
 }
 
-//Boom!!
-button.addEventListener('click', addListAfterClick);
-input.addEventListener('keypress', addListAfterKeypress);
-
+//time for assembling!
+button.addEventListener('click', addAfterClick);
+input.addEventListener('keypress', addAfterKeyPress);
