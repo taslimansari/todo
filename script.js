@@ -31,7 +31,7 @@ function inputLength(){
 function createListElement(){
     //for adding button
     var btn = document.createElement('button');
-    btn.innerHTML = 'Delete!!';
+    btn.innerHTML = 'Delete';
     btn.classList.add('delete');
     btn.onclick = removeTodo;
     //for list
