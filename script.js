@@ -26,7 +26,7 @@ function inputLength(){
     return input.value.length;
 }
 
-//creating a list element
+//Creating a list element
 function createListElement(){
     var btn = document.createElement("button");
     btn.innerHTML = "Delete";
@@ -42,7 +42,7 @@ function createListElement(){
 	input.value="";
 }
 
-//adding items to the end
+//Adding items to the end
 function addListAfterClick(){
     if(inputLength()>0){
         createListElement();
